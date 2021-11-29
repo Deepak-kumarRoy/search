@@ -1,225 +1,256 @@
 import React,{useState} from 'react';
 
 function Home(){
-  const [search, setSearch] = useState('');
-  const [list, setList] = useState([]);
+	const [uname, setUname]=useState('');
+	const [gender, setGender]=useState('');
+	const [age, setAge]=useState('');
+	const [desg, setDesg]=useState('');
+	const [dept, setDept]=useState('');
+	const [jdate, setJdate]=useState('');
+	const [ava, setAva]=useState(true);
+	const	[emp, setEmp]=useState([]);
+	const	[id, setId]=useState('');
 
-  const cafes = [
- 
-      {
-            
-      "name": "Bazaar Cafe",
 
-      "place_id": "kjk234g4gcvfx8usg1l33pi",
 
-      
-      "id": "jahgde7wgdiau8ewsahgosd",
-      
-      "street_no": "60H",
-      
-      "locality": "Solomos Island Road",
-      
-      "postal_code": "20688",
-      
-      "lat": "36.7783 N",
-      
-      "long": "119.4179 W"
-      
-      }, {
-            
-      "name": "Ashley's Cafe",
+	const submit = (e) => {
+		e.preventDefault();
+		const data={ava:true,uname, gender, age, desg, dept, jdate}
+		if(!uname || !gender || !age || !desg || !dept || !jdate){
+			alert("fields cannot be empty");
+		}else{
+			document.getElementsByClassName(close);
+			alert("successfull");
+			emp.splice(0,0, data);
+			setEmp([...emp]);
 
-      "place_id": "12hydbdf76sljfts87sbfis",
+		setUname('');
+		setGender('');
+		setAge('');
+		setDesg('');
+		setDept('');
+		setJdate('');
 
-      
-      "id": "12hydbdf76sljfts87sbfis",
-      
-      "street_no": "1B",
-      
-      "locality": "Macarthur Blvd",
-      
-      "postal_code": "20619",
-      
-      "lat": "38.1781 N",
-      
-      "long": "118.4171 W"
-      
-      }, {
-      "name": "Avenue Cafe",
+		}
+	}
 
-      "place_id": "skjd86svvfdrsv55svbvf3f",
-        
-      
-      "id": "kjk234g4gcvfx8usg1l33pi",
-      
-      "street_no": "45250",
-      
-      "locality": "Worth Avenue, Unit A",
-      
-      "postal_code": "20619",
-      
-      "lat": "36.1152",
-      
-      "long": "117.521"
-      
-      }, {
-      "name": "Hi-Lo Cafe",
+	const onDelete = (index) => {
+	
+		emp.splice(index,1)
+		setEmp([...emp]);
+	}
 
-      "place_id": "mjdhgetr4pojfyts22fzfsh",
-        
-      
-      "id": "saswe3s6yydtdr52hsd72yst",
-      
-      "street_no": "1X",
-      
-      "locality": "Macarthur Blvd",
-      
-      "postal_code": "20687",
-      
-      "lat": "36.7783",
-      
-      "long": "119.4179"
-      
-      }, {
-      "name": "California Chicken Cafe",
+	const onEdit = (name, dept, id) => {
+		setId(id);
+		setUname(name);
+		setDept(dept);
+	}
 
-      "place_id": "12hydbdf76sljfts87sbfis",
-        
-      
-      "id": "skjd86svvfdrsv55svbvf3f",
-      
-      "street_no": "7S",
-      
-      "locality": "Three Notch Road",
-      
-      "postal_code": "20619",
-      
-      "lat": "36.83",
-      
-      "long": "119.6"
-      
-      }, {
-      "name": "Avenue Bakery Cafe",
+	const update = () => {
+	
+		const data={uname, gender, age, desg, dept, jdate}
+		emp[id]=data;
+		setEmp([...emp])
+		setUname('');
+		setGender('');
+		setAge('');
+		setDesg('');
+		setDept('');
+		setJdate('');
+	
+	}
 
-      "place_id": "jahgde7wgdiau8ewsahgosd",
-        
-      
-      "id": "mjdhgetr4pojfyts22fzfsh",
-      
-      "street_no": "22803",
-      
-      "locality": "Gunston Dr Lexington Park",
-      
-      "postal_code": "20688",
-      
-      "lat": "35.7788",
-      
-      "long": "119.979"
-      
-      }, {
-      
-      "name": "Philz Coffee",
+	const value = () => {
+		for( var i=0; i<emp.length; i++){
+			if (emp[i].ava == true){
+					count++;
+					console.log(count)
+			}
+		}
+	} 
 
-      "place_id": "urhw3837ehalod7w02b7835",
-
-      
-      "id": "urhw3837ehalod7w02b7835",
-       
-      "street_no": "225",
-      
-      "locality": "Macarthur Blvd",
-      
-      "postal_code": "20687",
-      
-      "lat": "35.77813",
-      
-      "long": "119.41791"
-      
-      }
-      
-      ]
-      const submit = () => {
-       for(var i = 0; i<cafes.length; i++){
-         if(cafes[i].id === search){
-           const data = cafes[i];
-           list.splice(0,0,data)
-           setList([...list])
-           console.log(data)
-         }
-       }
-      }
-
-      // const serchHandler = () => {
-      //   if(search !== ""){
-      //      list = cafes.filter(search => {
-      //       return Object.value(search).join("")
-      //       .toLowerCase()
-      //       .includes(search.toLowerCase());
-      //     });
-      //     setSearch(list);
-      //   }else{
-      //     setSearch(cafes);
-      //   }
-      // };
-
-      // cafes.filter(post => {
-      //   if (search === "") {
-      //     return post;
-      //   } else if (post.id.toLowerCase().includes(search.toLowerCase())) {
-      //     return post;
-      //   }
-      // });
-      
   return(
     <>
-       <div className="container">
-      <div className="row">
-        <div className="col-12" id="header-wrapper">
-          <div className="container">
-            <div className="row">
-              <div className="col-12" id="header">
-                <h2>California Cafe Directory</h2>
-              </div>
-              <div className="col-12" id="search-wrapper">
-                <input type="text" placeholder="Search your favorite cafes!" value={search} onChange={e=>{setSearch(e.target.value)}}/>
-                <button type="submit" onClick={submit}>search</button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="container ">
-          <div className="row">
-            <div className="col-12" id="table-wrapper">
-              <table>
-                <thead>
-                  <tr className="table100-head">
-                    <th className="column1">S No</th>
-                    <th className="column2">Cafe Name</th>
-                    <th className="column3">Address</th>
-                    <th className="column4">Postal Code</th>
-                    <th className="column5">Lat</th>
-                    <th className="column6">Long</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  { list.map((post, index) => (
-                    <tr key={index}>
-                      <td className="column1">{post.id}</td>
-                      <td className="column2">{post.name}</td>
-                      <td className="column3">{post.locality}</td>
-                      <td className="column4">{post.postal_code}</td>
-                      <td className="column5">{post.lat}</td>
-                      <td className="column6">{post.long}</td>
-                    </tr>))}                   
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <nav className="navbar navbar-expand-md navbar-light bg-light">
+		<a className="navbar-brand" href="https://www.logic-square.com" target="_blank">
+			<img src="https://res.cloudinary.com/www-logic-square-com/image/upload/v1551945805/ls-logo.png"
+				className="ls-logo" alt="LS Logo" />
+		</a>
+		<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span className="navbar-toggler-icon"></span>
+		</button>
+		<div className="collapse navbar-collapse" id="navbarNav">
+			<ul className="navbar-nav ml-auto">
+				<li className="nav-item active">
+					<a className="nav-link" href="#">Page Name</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<div className="container-fluid">
+		<div className="row">
+			<div className="col-12">
+				<div className="question-dashboard">
+					<div className="card mt-4 mb-3 mb-md-4">
+						<div className="card-body p-3">
+							<h5 className="text-secondary mb-2">Available: <span
+									className="font-weight-bold ml-1 text-dark">{emp.length}</span></h5>
+							<h5 className="text-secondary">Total: <span className="font-weight-bold ml-1 text-dark">{emp.length}</span>
+							</h5>
+							​
+							<button className="btn btn-primary mt-4" data-toggle="modal" data-target="#addEmployeeModal">
+								<i className="fa fa-plus"></i>&nbsp; Add Employee</button>
+						</div>
+					</div>
+					​
+					<div className="table-responsive mt-3 mt-md-4 mb-2">
+						<table className="table table-bordered">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Department</th>
+									<th>Available</th>
+									<th>View Details</th>
+								</tr>
+							</thead>
+							{emp.map((value, index)=>(
+							<tbody key={index}>
+								<tr >
+									<td>{value.uname}</td>
+									<td>{value.dept}</td>
+									<td>
+										<div className="custom-control custom-checkbox">
+											<input type="checkbox" className="custom-control-input" id="customCheck1"
+												checked={ava} onChange={(e)=>setAva(e.target.checked)} />
+											<label className="custom-control-label" htmlFor="customCheck1"></label>
+										</div>
+									</td>
+									<td>
+										<button type="button" className="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#editEmployeeModal" onClick={()=>{onEdit(value.uname, value.dept, index)}}>
+											<i className="fa fa-edit"></i>&nbsp; Edit
+                    </button>
+                    <button type="button" className="btn btn-outline-danger btn-sm" onClick={()=>{onDelete(index)}}>
+											<i className="fa fa-trash" ></i>&nbsp; Delete
+										</button>
+									</td>
+								</tr>
+							</tbody>))}
+						</table>
+					</div>
+				</div>
+			</div>
+		</div> 
+	</div>
+	​
+	
+	<div className="modal fade" id="addEmployeeModal" tabIndex="-1" role="dialog" aria-labelledby="addEmployeeModal"
+		aria-hidden="true">
+		<div className="modal-dialog modal-dialog-centered" role="document">
+			<div className="modal-content">
+				<div className="modal-header pt-3 pb-2">
+					<h5 className="modal-title" id="exampleModalCenterTitle">Add Employee</h5>
+					<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div className="modal-body">
+					<form >
+						<div className="form-row ">
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Name</label>
+								<input type="text" className="form-control" id="" placeholder="Enter" value={uname} onChange={(e)=>{setUname(e.target.value)}} required/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Gender</label>
+								<select className="form-control" id="exampleFormControlSelect1" value={gender} onChange={(e)=>{setGender(e.target.value)}} required>
+									<option>Select</option>
+									<option>Male</option>
+									<option>Female</option>
+								</select>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Age</label>
+								<input type="number" className="form-control" id="" placeholder="Enter" value={age} onChange={(e)=>{setAge(e.target.value)}} required/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Designation</label>
+								<input type="text" className="form-control" id="" placeholder="Enter" value={desg} onChange={(e)=>{setDesg(e.target.value)}} required/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Department</label>
+								<input type="text" className="form-control" id="" placeholder="Enter" value={dept} onChange={(e)=>{setDept(e.target.value)}} required/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Joining Date</label>
+								<input type="date" className="form-control" id="" placeholder="" value={jdate} onChange={(e)=>{setJdate(e.target.value)}} required/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div className="modal-footer">
+					<button type="button" className="btn btn-outline-danger btn-sm" data-dismiss="modal">Cancel</button>
+					<button type="submit" className="btn btn-success btn-sm" data-dismiss="modal" onClick={submit}>Save</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+
+	<div className="modal fade" id="editEmployeeModal" tabIndex="-1" role="dialog" aria-labelledby="editEmployeeModal"
+		aria-hidden="true">
+		<div className="modal-dialog modal-dialog-centered" role="document">
+			<div className="modal-content">
+				<div className="modal-header pt-3 pb-2">
+					<h5 className="modal-title" id="exampleModalCenterTitle">Edit Employee</h5>
+					<button type="button" className="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div className="modal-body">
+					<form >
+						<div className="form-row ">
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Name</label>
+								<input type="text" className="form-control" id="" placeholder="Enter" value={uname} onChange={(e)=>{setUname(e.target.value)}} required/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Gender</label>
+								<select className="form-control" id="exampleFormControlSelect1" value={gender} onChange={(e)=>{setGender(e.target.value)}} required>
+									<option>Select</option>
+									<option>Male</option>
+									<option>Female</option>
+								</select>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Age</label>
+								<input type="number" className="form-control" id="" placeholder="Enter" value={age} onChange={(e)=>{setAge(e.target.value)}} required/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Designation</label>
+								<input type="text" className="form-control" id="" placeholder="Enter" value={desg} onChange={(e)=>{setDesg(e.target.value)}} required/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Department</label>
+								<input type="text" className="form-control" id="" placeholder="Enter" value={dept} onChange={(e)=>{setDept(e.target.value)}} required/>
+							</div>
+							<div className="form-group col-md-6">
+								<label htmlFor="" className="mb-1">Joining Date</label>
+								<input type="date" className="form-control" id="" placeholder="" value={jdate} onChange={(e)=>{setJdate(e.target.value)}} required/>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div className="modal-footer">
+					<button type="button" className="btn btn-outline-danger btn-sm" data-dismiss="modal">Cancel</button>
+					<button type="submit" className="btn btn-success btn-sm" data-dismiss="modal" onClick={update}>Update</button>
+				</div>
+			</div>
+		</div>
+	</div> 
+
     </>
-  );
+  )
 }
 
 export default Home;
